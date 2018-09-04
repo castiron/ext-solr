@@ -1,4 +1,5 @@
 <?php
+
 namespace ApacheSolrForTypo3\Solr\IndexQueue\FrontendHelper;
 
 /***************************************************************
@@ -321,14 +322,16 @@ class PageIndexer extends AbstractFrontendHelper
             $this->request->getParameter('item')
         );
 
+        $rootPageId = $indexQueueItem ? $indexQueueItem->getRootPageUid() : 1;
+
         $solrConnection = $connectionManager->getConnectionByRootPageId(
-            $indexQueueItem->getRootPageUid(),
+            $rootPageid,
             $GLOBALS['TSFE']->sys_language_uid
         );
 
         // log the Solr connection used and why
         $this->responseData['solrConnection'] = array(
-            'rootPage' => $indexQueueItem->getRootPageUid(),
+            'rootPage' => $rootPageId,
             'sys_language_uid' => $GLOBALS['TSFE']->sys_language_uid,
             'solr' => (string)$solrConnection
         );
