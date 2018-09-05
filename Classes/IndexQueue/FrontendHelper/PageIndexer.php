@@ -325,7 +325,7 @@ class PageIndexer extends AbstractFrontendHelper
         $rootPageId = $indexQueueItem ? $indexQueueItem->getRootPageUid() : 1;
 
         $solrConnection = $connectionManager->getConnectionByRootPageId(
-            $rootPageid,
+            $rootPageId,
             $GLOBALS['TSFE']->sys_language_uid
         );
 
